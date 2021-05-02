@@ -1,48 +1,57 @@
 import math
-#Formulas Convexão
-1/h*A #h do ar e A de agua
-
-#Formulas Condução
-d/k*A
-
-
-#Dimensões Chaleira - CM
-Diametro = 14
-Raio = 7
-Altura = 16
 #Informações Chaleira
-Condutividade = 0.06
-Larg_Parede = 0.1
-Pot= 1200
-V_max = 1.7
-Cal_Esp_pl = 0.21 - 0.43
-#Informações Agua
-Densidade = 1
-Condutividade1 = 631.2372 
-Cal_Esp = 1
+#Diametro da Chaleira
+di= 14
+#Raio da Chaleira
+r= 7
+#Altura da Chaleira
+al= 16
+#Condutividade Termica da Chaleira
+cond = 0.06
+#Largura Parede Interna da Chaleira
+la = 0.1
+d=0.05
+#Potencia da Chaleira
+P = 1200
+#Volume Maximo da Chaleira
+v = 1.7
+#Calor Escifico do Plastico
+ca = 0.21
+#Area de Superficie Chaleira
+ar=2*math.pi*r*al
 
-#Informações objetivas
-di= Diametro
-r= Raio
-al= Altura
-cond = Condutividade
-la = Larg_Parede
-P = Pot
-v = V_max
-ca = Cal_Esp_pl
-de= Densidade
-con = Condutividade1
-cal= Cal_Esp
-pi =math.pi
+#Informações Agua
+#Densidade da Agua
+de= 1
+#Condutividade termica da Agua
+con = 631.2372
+#Calor especifico da Agua
+cal= 1
+#Area de Superficie Agua
+As=2*math.pi*r
+
+#Informações do Ar
+#Condutividade termica do Ar
+
+#Temperaturas
+#Tamb
+Tamb=
+#Ta
+
+#Tp
+
+
+
+
 
 
 #Função
 def modelo(x,t):
-    Qag= P
-    Qconvx=
-    Qconv=
-    Qconx1=
+    Qag=P
+    Qconvx= (Ta-Tp)/((1/(con*As))+(d/cond*ar)) #Convexão Agua
+    Qcond= (Tp-Tamb)/(1/#Condução Parede
+    Qconx= #Convexão AR
     dTadt=
-    dTadt=(1/(m*ca)) * (Qag - Qconx - Qconv)
+    dTadt=(1/(m*ca)) * (Qag - Qconx - Qcond)
     dTpdt= (1/) * ()
 
