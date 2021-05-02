@@ -6,10 +6,20 @@ d/k*A
 
 #Informações da Chaleira
 #Chaleira como Cilindro
-Raio = 10.5 #Cm
-Altura =
+Diametro = 14 #Centimetros
+Raio = 7 #Centimetros
+Altura = 16 #Centimetros
 Condutividade_t=
-Largura_parede_i=
+Larg_Parede = 1 #Milimetros
 Pot= 1200 #Watts
 V_max= 1.7 #Litros
+
+#Informações da Agua
+Densidade = 1 #1L/1Kg
+Massa = 
+Condutividade = 631.2372 #mW/mK - Média
+
+#Formulas
+dTadt=(1/(m*ca)) * (Qag - Qconx - Qconv)
+dTpdt= (1/) * ()
 
