@@ -36,13 +36,15 @@ vr=0.05*1*1*5'''
 mo=do*vo
 #massa do recipiente
 mr=drec*vr
-'''#calor específico do óleo de soja
-co=1814.9
-#calor específico do latão
-cr=377'''
+#calor específico da água
+co = 1
+''''
+#calor específico da garrafa
+cr=377
+'''
 #temperatura ambiente, em kelvin
 Ta=26+273.15
-#espessura do recipiente: 0.1 mm: vamos dividi-lo ao meio na modelagem da condução térmica
+#espessura do recipiente: 1 mm (0.001 m). vamos dividi-lo ao meio na modelagem da condução térmica
 dr=0.01/2
 '''#área da superfície de contato entre o óleo e o ar
 As=1*1'''
