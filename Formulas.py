@@ -76,7 +76,14 @@ for i in range(len(lista_qt)):
     x = odeint (modelo_novo,x0,lista_tempo, args=(lista_qt[i],))
     Ta = x[:,0]
     Tp = x[:,1]
-    plt.plot(lista_tempo, Ta, label = "Temp. Àgua: {0}L".format(lista_qt[i]))
+    Ta_a=[]
+    for e in Ta:
+        if e > 373.15:
+            Ta_a.append(373.15)
+        else:
+            Ta_a.append(e)
+
+    plt.plot(lista_tempo, Ta_a, label = "Temp. Àgua: {0}L".format(lista_qt[i]))
     plt.plot(lista_tempo, Tp, label = "Temp. Par: {0}L".format(lista_qt[i]))
 
 #Plot Gráfico
