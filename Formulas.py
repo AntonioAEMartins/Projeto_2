@@ -18,9 +18,9 @@ mr = 1.4 #Massa
 hp = 10 # Transferencia Convectiva recepiente para o Ar
 "" #Comentar unidades
 #Informações Básicos - Àgua
-qt = 0.5#Quantidade(Litros)
+#qt = 0.5#Quantidade(Litros)
 de = 997 #Densidade
-ma = qt*de
+#ma = qt*de
 #Informações Avançadas - Àgua
 hag = 50 #Convectividade W*mˆ-1*kˆ-1
 calag = 1 #Calor Especifico
@@ -36,7 +36,7 @@ Ar = Ap #Contato In
 sigma=5.6703e-8 #Constante de Boltzman
 ""
 #Função
-def modelo(x,t):
+"""def modelo(x,t):
     Ta= x[0]
     Tp= x[1]
     Qag= pot
@@ -45,7 +45,7 @@ def modelo(x,t):
     dTadt=(1/(ma*calag)) * (Qag - Q1)
     dTpdt= (1/mr*cal) * (Q1-Q2)
     dxdt=[dTadt,dTpdt]
-    return dxdt
+    return dxdt"""
 
 def modelo_novo(x,t,qt):
     Ta= x[0]
@@ -53,7 +53,7 @@ def modelo_novo(x,t,qt):
     Qag= pot
     Q1= (Ta-Tp) / ((1/(hag*Ap))+(lap/con*Ap)) #Convexão Agua
     Q2= (Tp-Tamb) / ((1/hp*Ap)+(lap/con*Ap)) #Condução Parede
-    dTadt=(1/(ma*calag)) * (Qag - Q1)
+    dTadt=(1/(qt*de*calag)) * (Qag - Q1)
     dTpdt= (1/mr*cal) * (Q1-Q2)
     dxdt=[dTadt,dTpdt]
     return dxdt
@@ -63,27 +63,27 @@ delta_t = 10**(-3)
 Tmax = 120
 lista_tempo = np.arange(0,Tmax,delta_t)
 x0 = [27+273.15, 27+273.15]
-y_lista=odeint(modelo, x0, lista_tempo)
+#y_lista=odeint(modelo, x0, lista_tempo)
 
 #alterando os volumes da água
 lista_qt = [0.5, 1.0 , 1.5 , 1.7]
 
 for i in range(len(lista_qt)):
-    Ta = 1
-    Tp = 0
+    Ta = 27 + 273.15
+    Tp = 27 + 273.15
     x0 = [Ta,Tp]
 
     x = odeint (modelo_novo,x0,lista_tempo, args=(lista_qt[i],))
     Ta = x[:,0]
     Tp = x[:,1]
-    plt.plot(lista_tempo, Ta, label = lista_qt[i] "Temp. Àgua")
-    plt.plot(lista_tempo, Tp, label = lista_qt[i] "Temp.")
+    plt.plot(lista_tempo, Ta, label = "Temp. Àgua: {0}L".format(lista_qt[i]))
+    plt.plot(lista_tempo, Tp, label = "Temp. Par: {0}L".format(lista_qt[i]))
 
 #Plot Gráfico
-temp_agua=y_lista[:,0]
-temp_parede=y_lista[:,1]
-plt.plot(lista_tempo, temp_agua, label="Temp. Àgua")
-plt.plot(lista_tempo,temp_parede,label="Temp.Parede")
+"""temp_agua=y_lista[:,0]
+temp_parede=y_lista[:,1]"""
+#plt.plot(lista_tempo, temp_agua, label="Temp. Àgua")
+#plt.plot(lista_tempo,temp_parede,label="Temp.Parede")
 plt.xlabel("Tempo(s)")
 plt.ylabel("Temperatura (k)")
 plt.legend()
