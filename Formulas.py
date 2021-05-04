@@ -19,7 +19,7 @@ qt = #Quantidade(Litros)
 de = 997 #Densidade
 ma = qt*de
 #Informações Avançadas - Àgua
-hag = 0.0235 #Convectividade W*mˆ-1*kˆ-1
+hag = 50 #Convectividade W*mˆ-1*kˆ-1
 calag = 1 #Calor Especifico
 emi = 0.93 #Emissividade (7.9 µm 8-14 µm)
 ""
