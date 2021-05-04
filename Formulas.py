@@ -76,8 +76,8 @@ for i in range(len(lista_qt)):
     x = odeint (modelo_novo,x0,lista_tempo, args=(lista_qt[i],))
     Ta = x[:,0]
     Tp = x[:,1]
-    plt.plot(lista_tempo, Ta, label = lista_qt[i])
-    plt.plot(lista_tempo, Tp, label = lista_qt[i])
+    plt.plot(lista_tempo, Ta, label = lista_qt[i] "Temp. Àgua")
+    plt.plot(lista_tempo, Tp, label = lista_qt[i] "Temp.")
 
 #Plot Gráfico
 temp_agua=y_lista[:,0]
