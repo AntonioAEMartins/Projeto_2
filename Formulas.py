@@ -13,7 +13,7 @@ pot = 1800 #W - Potência
 drec = volm/ms #Densidade
 mr = drec*vr #Massa
 hp = 10 # Transferencia Convectiva recepiente para o Ar
-""
+"" #Comentar unidades
 #Informações Básicos - Àgua
 qt = #Quantidade(Litros)
 de = 997 #Densidade
@@ -27,22 +27,20 @@ emi = 0.93 #Emissividade (7.9 µm 8-14 µm)
 tamb = 27+273.15#K
 ""
 #Areas
-Ap = 2*pi*Raio*Altura #Contato Ex
-Ar = Ap #Contato In
+Ap = 2*pi*Raio*Altura + pi #Contato Ex
+Ar = Ap + #Contato In
 ""
 sigma=5.6703e-8 #Constante de Boltzman
 ""
 #Função
 def modelo(x,t):
-    Ta=x[0]
-    Tp=x[1]
-    Qag=P
-    Q1= (Ta-Tp)/((1/(hag*Ap))+(lap/con*Ap)) #Convexão Agua
-    Q2= (Tp-Tamb)/(1/#Condução Parede
-    Q3=
-    Q4=
-    dTadt=(1/(m*ca)) * (Qag - Qconx - Qconv)
-    dTpdt= (1/) * ()
+    Ta= x[0]
+    Tp= x[1]
+    Qag= P
+    Q1= (Ta-Tp) / ((1/(hag*Ap))+(lap/con*Ap)) #Convexão Agua
+    Q2= (Tp-Tamb) / ((1/hp*Ap)+(lap/con*Ap)) #Condução Parede
+    dTadt=(1/(m*ca)) * (Qag - Q1)
+    dTpdt= (1/) * (Q1-Q2)
     dxdt=[dTadt,dTpdt]
     return dxdt
 
