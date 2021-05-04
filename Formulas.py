@@ -47,12 +47,38 @@ def modelo(x,t):
     dxdt=[dTadt,dTpdt]
     return dxdt
 
+def modelo_novo(x,t,va):
+    Ta= x[0]
+    Tp= x[1]
+    Qag= pot
+    Q1= (Ta-Tp) / ((1/(hag*Ap))+(lap/con*Ap)) #Convexão Agua
+    Q2= (Tp-Tamb) / ((1/hp*Ap)+(lap/con*Ap)) #Condução Parede
+    dTadt=(1/(ma*calag)) * (Qag - Q1)
+    dTpdt= (1/mr*cal) * (Q1-Q2)
+    dxdt=[dTadt,dTpdt]
+    return dxdt
+
 #IMPLEMENTE AQUI A PRIMEIRA ITERAÇÃO DO MODELO
 delta_t = 10**(-3)
 Tmax = 120
 lista_tempo = np.arange(0,Tmax,delta_t)
 x0 = [27+273.15, 27+273.15]
 y_lista=odeint(modelo, x0, lista_tempo)
+
+#alterando os volumes da água
+lista_va = [0.5, 1.0 , 1.5 , 1.7]
+
+for i in range(len(lista_va)):
+    Ta = 1
+    Tp = 0
+    x0 = [Ta,Tp]
+
+    x = odeint (modelo_novo,x0,lista_tempo, args=(lista_va[i],))
+    Ta = x[:,0]
+    Tp = x[:,1]
+    plt.plot(tempo, Ta, label = lista_kt[i])
+    plt.plot(tempo, Tp, label = lista_kt[i])
+
 #Plot Gráfico
 temp_agua=y_lista[:,0]
 temp_parede=y_lista[:,1]
