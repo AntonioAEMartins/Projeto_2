@@ -1,95 +1,70 @@
-import math
-#Formulas Convexão
-1/(h*A) #h do ar e A de agua
+from math import *
+#Informações Básicas - Chaleira
+di = 0.14 #M - Diametro
+r = 0.07 #M - Raio
+al = 0.16 #M - Altura
+ms = #Massa
+#Informações Avançadas - Chaleira
+con =0.06 # - Condutividade
+lap = 0.001/2 #M - Largura Parede Interna
+volm = 0.00017 #Mˆ3 - Volume Maximo
+cal = 0.21 # Calor Especifico 0.46
+pot = 1800 #W - Potência
+drec = volm/ms #Densidade
+mr = drec*vr #Massa
+hp = 10 # Transferencia Convectiva recepiente para o Ar
+""
+#Informações Básicos - Àgua
+qt = #Quantidade(Litros)
+de = 997 #Densidade
+ma = qt*de
+#Informações Avançadas - Àgua
+hag = 0.0235 #Convectividade W*mˆ-1*kˆ-1
+calag = 1 #Calor Especifico
+emi = 0.93 #Emissividade (7.9 µm 8-14 µm)
+""
+#Temperaturas Iniciais
+tamb = 27+273.15#K
+""
+#Areas
+Ap = 2*pi*Raio*Altura #Contato Ex
+Ar = Ap #Contato In
+""
+sigma=5.6703e-8 #Constante de Boltzman
+""
+#Função
+def modelo(x,t):
+    Ta=x[0]
+    Tp=x[1]
+    Qag=P
+    Q1= (Ta-Tp)/((1/(hag*Ap))+(lap/con*Ap)) #Convexão Agua
+    Q2= (Tp-Tamb)/(1/#Condução Parede
+    Q3=
+    Q4=
+    dTadt=(1/(m*ca)) * (Qag - Qconx - Qconv)
+    dTpdt= (1/) * ()
+    dxdt=[dTadt,dTpdt]
+    return dxdt
 
-#Formulas Condução
-d/(k*A)
-
-
-#Dimensões Chaleira - CM
-Diametro = 14
-Raio = 7
-Altura = 16
-#Informações Chaleira
-Condutividade = 0.06
-Larg_Parede = 0.1
-Pot= 1200
-V_max = 1.7
-Cal_Esp_pl = 0.21 - 0.43
-#Informações Agua
-Densidade = 1
-Condutividade1 = 631.2372 
-Cal_Esp = 1
-
-
+#Iteração
 '''Aprimorando informações a partir do exercício de modelagem da coxinha''' 
 
-#densidade da água - '''0,997 kg/L --> 997 kg/m3'''
-do=
-#densidade do recipiente (garrafa)
-drec=
 '''#volume de óleo - vamos deixar 10cm abaixo da altura do recipiente
 vo=1*1*0.5
 #volume do recipiente
 vr=0.05*1*1*5'''
-#massa de óleo
-mo=do*vo
-#massa do recipiente
-mr=drec*vr
-#calor específico da água
-co = 1
+
 ''''
 #calor específico da garrafa
 cr=377
 '''
-#temperatura ambiente, em kelvin
-Ta=26+273.15
-#espessura do recipiente: 1 mm (0.001 m). vamos dividi-lo ao meio na modelagem da condução térmica
-dr=0.01/2
+
 '''#área da superfície de contato entre o óleo e o ar
 As=1*1'''
-#área de contato das paredes externas do recipiente -->área do cilindro
-Ap=14*16
-#área de contato das paredes internas recipiente (vamos simplificar e igualá-las aqui) --> área do cilindro
-Ar=Ap
+
 '''#condutividade térmica do aço --> 80W/mk
-kr=160
+kr=
 #coeficiente de transferência convectiva da superfície do óleo para o ar --> 10W/m2k
-hs=10
+hs=
 #coeficiente de transferência convectiva das paredes do recipiente para o ar --> 10W/m2k
 hp=10'''
-#potência térmica dos aquecedor --> W
-P=1800
-#constante de Boltzman
-sigma=5.6703e-8
-#emissividade da água (	7.9 µm 8-14 µm)
-emissividade = 0.93
-
-
-
-
-#Informações objetivas
-di= Diametro
-r= Raio
-al= Altura
-cond = Condutividade
-la = Larg_Parede
-P = Pot
-v = V_max
-ca = Cal_Esp_pl
-de= Densidade
-con = Condutividade1
-cal= Cal_Esp
-pi =math.pi
-
-
-#Função
-def modelo(x,t):
-    Qag=P
-    Qconvx= (Ta-Tp)/((1/(con*As))+(d/cond*ar)) #Convexão Agua
-    Qcond= (Tp-Tamb)/(1/#Condução Parede
-    Qconv=
-    Qconx1=
-    dTadt=
-    dTadt=(1/(m*ca)) * (Qag - Qconx - Qconv)
-    dTpdt= (1/) * ()
