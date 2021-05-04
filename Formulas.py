@@ -85,8 +85,9 @@ pi =math.pi
 
 #Função
 def modelo(x,t):
-    Qag= P
-    Qconvx=
+    Qag=P
+    Qconvx= (Ta-Tp)/((1/(con*As))+(d/cond*ar)) #Convexão Agua
+    Qcond= (Tp-Tamb)/(1/#Condução Parede
     Qconv=
     Qconx1=
     dTadt=
