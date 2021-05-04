@@ -47,7 +47,7 @@ def modelo(x,t):
     dxdt=[dTadt,dTpdt]
     return dxdt
 
-def modelo_novo(x,t,va):
+def modelo_novo(x,t,qt):
     Ta= x[0]
     Tp= x[1]
     Qag= pot
@@ -66,18 +66,18 @@ x0 = [27+273.15, 27+273.15]
 y_lista=odeint(modelo, x0, lista_tempo)
 
 #alterando os volumes da água
-lista_va = [0.5, 1.0 , 1.5 , 1.7]
+lista_qt = [0.5, 1.0 , 1.5 , 1.7]
 
-for i in range(len(lista_va)):
+for i in range(len(lista_qt)):
     Ta = 1
     Tp = 0
     x0 = [Ta,Tp]
 
-    x = odeint (modelo_novo,x0,lista_tempo, args=(lista_va[i],))
+    x = odeint (modelo_novo,x0,lista_tempo, args=(lista_qt[i],))
     Ta = x[:,0]
     Tp = x[:,1]
-    plt.plot(lista_tempo, Ta, label = lista_kt[i])
-    plt.plot(lista_tempo, Tp, label = lista_kt[i])
+    plt.plot(lista_tempo, Ta, label = lista_qt[i])
+    plt.plot(lista_tempo, Tp, label = lista_qt[i])
 
 #Plot Gráfico
 temp_agua=y_lista[:,0]
