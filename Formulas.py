@@ -7,7 +7,7 @@ di = 0.14 #M - Diametro
 r = 0.07 #M - Raio
 al = 0.16 #M - Altura
 ms = 1.4 #Kg - Massa
-#Informações Avançadas - Chaleir
+#Informações Avançadas - Chaleira
 con =0.06 # - Condutividade
 lap = 0.001/2 #M - Largura Parede Interna
 volm = 0.00017 #Mˆ3 - Volume Maximo
