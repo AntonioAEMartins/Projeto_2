@@ -1,9 +1,12 @@
 from math import *
+from scipy.integrate import odeint
+import numpy as np
+import matplotlib.pyplot as plt
 #Informações Básicas - Chaleira
 di = 0.14 #M - Diametro
 r = 0.07 #M - Raio
 al = 0.16 #M - Altura
-ms = #Massa
+ms = 1.4 #Kg - Massa
 #Informações Avançadas - Chaleira
 con =0.06 # - Condutividade
 lap = 0.001/2 #M - Largura Parede Interna
@@ -11,11 +14,11 @@ volm = 0.00017 #Mˆ3 - Volume Maximo
 cal = 0.21 # Calor Especifico 0.46
 pot = 1800 #W - Potência
 drec = volm/ms #Densidade
-mr = drec*vr #Massa
+mr = 1.4 #Massa
 hp = 10 # Transferencia Convectiva recepiente para o Ar
 "" #Comentar unidades
 #Informações Básicos - Àgua
-qt = #Quantidade(Litros)
+qt = 0.5#Quantidade(Litros)
 de = 997 #Densidade
 ma = qt*de
 #Informações Avançadas - Àgua
@@ -24,11 +27,11 @@ calag = 1 #Calor Especifico
 emi = 0.93 #Emissividade (7.9 µm 8-14 µm)
 ""
 #Temperaturas Iniciais
-tamb = 27+273.15#K
+Tamb = 27+273.15#K
 ""
 #Areas
-Ap = 2*pi*Raio*Altura + pi #Contato Ex
-Ar = Ap + #Contato In
+Ap = 2*pi*r*al + 2*pi*r #Contato Ex
+Ar = Ap #Contato In
 ""
 sigma=5.6703e-8 #Constante de Boltzman
 ""
@@ -36,14 +39,30 @@ sigma=5.6703e-8 #Constante de Boltzman
 def modelo(x,t):
     Ta= x[0]
     Tp= x[1]
-    Qag= P
+    Qag= pot
     Q1= (Ta-Tp) / ((1/(hag*Ap))+(lap/con*Ap)) #Convexão Agua
     Q2= (Tp-Tamb) / ((1/hp*Ap)+(lap/con*Ap)) #Condução Parede
-    dTadt=(1/(m*ca)) * (Qag - Q1)
-    dTpdt= (1/) * (Q1-Q2)
+    dTadt=(1/(ma*calag)) * (Qag - Q1)
+    dTpdt= (1/mr*cal) * (Q1-Q2)
     dxdt=[dTadt,dTpdt]
     return dxdt
 
+#IMPLEMENTE AQUI A PRIMEIRA ITERAÇÃO DO MODELO
+delta_t = 10**(-3)
+Tmax = 120
+lista_tempo = np.arange(0,Tmax,delta_t)
+x0 = [27+273.15, 27+273.15]
+y_lista=odeint(modelo, x0, lista_tempo)
+#Plot Gráfico
+temp_agua=y_lista[:,0]
+temp_parede=y_lista[:,1]
+plt.plot(lista_tempo, temp_agua, label="Temp. Àgua")
+plt.plot(lista_tempo,temp_parede,label="Temp.Parede")
+plt.xlabel("Tempo(s)")
+plt.ylabel("Temperatura (k)")
+plt.legend()
+plt.grid(True)
+plt.show()
 #Iteração
 '''Aprimorando informações a partir do exercício de modelagem da coxinha''' 
 
