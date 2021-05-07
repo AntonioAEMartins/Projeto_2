@@ -65,8 +65,8 @@ lista_tempo = np.arange(0,Tmax,delta_t)
 x0 = [27+273.15, 27+273.15]
 #y_lista=odeint(modelo, x0, lista_tempo)
 
-#alterando os volumes da água
-lista_qt =np.arange(0.1,1.71,0.01)
+#Iteração  dos volumes da água
+lista_qt =np.arange(0.1,1.701,0.001)
 
 for i in range(len(lista_qt)):
     Ta = 27 + 273.15
