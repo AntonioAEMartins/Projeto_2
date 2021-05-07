@@ -66,13 +66,14 @@ x0 = [27+273.15, 27+273.15]
 #y_lista=odeint(modelo, x0, lista_tempo)
 
 #alterando os volumes da água
-lista_qt = [0.5, 1.0 , 1.5 , 1.7]
+
+lista_qt = np.arange(0,1.7,0.1)
 
 for i in range(len(lista_qt)):
     Ta = 27 + 273.15
     Tp = 27 + 273.15
     x0 = [Ta,Tp]
-
+sdaddasasdasdsd
     x = odeint (modelo_novo,x0,lista_tempo, args=(lista_qt[i],))
     Ta = x[:,0]
     Tp = x[:,1]
