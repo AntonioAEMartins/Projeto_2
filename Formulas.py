@@ -66,7 +66,7 @@ x0 = [27+273.15, 27+273.15]
 #y_lista=odeint(modelo, x0, lista_tempo)
 
 #alterando os volumes da água
-lista_qt = [0.5, 1.0 , 1.5 , 1.7]
+lista_qt =np.arange(0.1,1.71,0.01)
 
 for i in range(len(lista_qt)):
     Ta = 27 + 273.15
@@ -84,7 +84,7 @@ for i in range(len(lista_qt)):
             Ta_a.append(e)
 
     plt.plot(lista_tempo, Ta_a, label = "Temp. Àgua: {0}L".format(lista_qt[i]))
-    plt.plot(lista_tempo, Tp, label = "Temp. Par: {0}L".format(lista_qt[i]))
+    #plt.plot(lista_tempo, Tp, label = "Temp. Par: {0}L".format(lista_qt[i]))
 
 #Plot Gráfico
 """temp_agua=y_lista[:,0]
@@ -93,7 +93,7 @@ temp_parede=y_lista[:,1]"""
 #plt.plot(lista_tempo,temp_parede,label="Temp.Parede")
 plt.xlabel("Tempo(s)")
 plt.ylabel("Temperatura (k)")
-plt.legend()
+#plt.legend()
 plt.grid(True)
 plt.show()
 #Iteração
