@@ -75,7 +75,6 @@ for i in range(len(lista_qt)):
     Ta = 27 + 273.15
     Tp = 27 + 273.15
     x0 = [Ta,Tp]
-sdaddasasdasdsd
     x = odeint (modelo_novo,x0,lista_tempo, args=(lista_qt[i],))
     Ta = x[:,0]
     Tp = x[:,1]
