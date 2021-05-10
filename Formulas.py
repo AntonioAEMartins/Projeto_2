@@ -36,7 +36,7 @@ Ar = Ap #Contato In
 sigma=5.6703e-8 #Constante de Boltzman
 ""
 #Função
-"""def modelo(x,t):
+def modelo(x,t):
     Ta= x[0]
     Tp= x[1]
     Qag= pot
@@ -45,7 +45,7 @@ sigma=5.6703e-8 #Constante de Boltzman
     dTadt=(1/(ma*calag)) * (Qag - Q1)
     dTpdt= (1/mr*cal) * (Q1-Q2)
     dxdt=[dTadt,dTpdt]
-    return dxdt"""
+    return dxdt
 
 def modelo_novo(x,t,qt):
     Ta= x[0]
@@ -69,7 +69,7 @@ x0 = [27+273.15, 27+273.15]
 
 lista_qt = np.arange(0,1.7,0.1)
 #Iteração  dos volumes da água
-lista_qt =np.arange(0.1,1.701,0.001)
+lista_qt =np.arange(0.1,1.71,0.01)
 
 for i in range(len(lista_qt)):
     Ta = 27 + 273.15
